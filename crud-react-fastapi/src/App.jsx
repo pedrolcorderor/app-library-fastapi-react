@@ -5,7 +5,6 @@ function BooksItems({title, id,year,score, handlerDeleteButton}){
     <article className="w-96 bg-gray-100 rounded-xl
      shadow-lg shadow-gray-700 mx-auto mt-10 p-5">
       <h3 className="text-center text-2xl mb-5">{title}</h3>
-      <p className="">ID: {id}</p>
       <p className="">Year: {year}</p>
       <p className="">Score: {score}</p>
       <div className="flex justify-center my-5">
