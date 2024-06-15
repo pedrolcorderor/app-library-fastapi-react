@@ -28,9 +28,7 @@ function App() {
 
   const getBooks = async() => {
     const allBooks = await fetch("http://127.0.0.1:8000/api/v1/books")
-    console.log(allBooks)
     const booksJson = await allBooks.json()
-    console.log(booksJson)
     setBooks(booksJson)
   }
 

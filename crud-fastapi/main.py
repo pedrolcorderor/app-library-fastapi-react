@@ -5,7 +5,7 @@ from typing import List, Annotated
 import models
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
-from Models.books import Book
+from Models.books import Book, BookId
 
 app = FastAPI()
 
@@ -31,17 +31,14 @@ def get_db():
         db.close
 
 db_dependency = Annotated[Session, Depends(get_db)]
-""" 
+ 
 @app.get("/")
 def root():
     return {
-        "message":"Hi, this is my app"
+        "message":"Hi, this is my app "
     }
 
-@app.get("/api/v1/books", response_model=list[Book])
-def get_books():
-    return books_db
-
+"""
 @app.get("/api/v1/books/{book_id}",response_model=Book)
 def get_book(book_id: int):
     for book in books_db:
@@ -49,14 +46,8 @@ def get_book(book_id: int):
             return book
     raise HTTPException(status_code=404, detail="Book not found") """
 
-""" 
-@app.post("/api/v1/books",response_model=Book)
-def create_book(book_data: Book):
-    new_book = book_data.model_dump()
-    books_db.append(new_book)
-    return new_book
-      """
-@app.get("/api/v1/books", response_model=List[Book])
+
+@app.get("/api/v1/books", response_model=List[BookId])
 def get_books(db: Session = Depends(get_db)):
     books = db.query(models.Books).all()
     if not books:
@@ -71,11 +62,11 @@ def create_book(book: Book, db:db_dependency):
 
     
 
-""" @app.delete("/api/v1/books/{book_id}", response_model=Book)
-def delete_book(book_id: int):
-    for book in books_db:
-        if book["id"] == book_id:
-            book_deleted =book
-            books_db.remove(book)
-            return book_deleted
-    raise HTTPException(status_code=404,detail="Book not found") """
+@app.delete("/api/v1/books/{book_id}")
+async def delete_book(book_id:int,db:db_dependency):
+    book = db.query(models.Books).filter(models.Books.id==book_id).first()
+    if not book:
+        raise HTTPException(status_code=404,detail="Book not found")
+    
+    db.delete(book)
+    db.commit()
