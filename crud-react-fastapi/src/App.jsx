@@ -19,7 +19,7 @@ function BooksItems({title, id,year,score, handlerDeleteButton}){
 function App() {
   const [books, setBooks] = useState([])
   const[dataForm, setDataForm] = useState({
-    "id":"",
+    // "id":"",
     "title": "",
     "year": "",
     "score":""
@@ -28,7 +28,9 @@ function App() {
 
   const getBooks = async() => {
     const allBooks = await fetch("http://127.0.0.1:8000/api/v1/books")
+    console.log(allBooks)
     const booksJson = await allBooks.json()
+    console.log(booksJson)
     setBooks(booksJson)
   }
 
@@ -73,8 +75,8 @@ function App() {
       
       <form className="flex flex-col justify-center items-center px-5 my-5"
        onSubmit={handlerFormSubmit}>
-        <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3"
-        onChange={handlerFormInput} value={dataForm.id} type="text" name="id" required placeholder="ID..." />
+      {/*   <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3"
+        onChange={handlerFormInput} value={dataForm.id} type="text" name="id" required placeholder="ID..." /> */}
         <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
         onChange={handlerFormInput} value={dataForm.title} type="text" name="title" required placeholder="Title..."/>
         <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 

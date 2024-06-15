@@ -7,6 +7,6 @@ class Books(Base):
 
     id=Column(Integer,primary_key=True,index=True)
     title=Column(String, index=True)
-    year=Column(String,index=True)
-    score=Column(String,index=True)
+    year=Column(Integer,index=True)
+    score=Column(Integer,index=True)
 
