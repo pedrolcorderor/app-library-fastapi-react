@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react"
 import './index.css'
 
-function BooksItems({title, id,year,score, handlerDeleteButton}){
+function BooksItems({title,author,id,year,score,review, handlerDeleteButton}){
   return(
     <article className="w-96 bg-gray-100 rounded-xl
      shadow-lg shadow-gray-700 mx-auto mt-10 p-5 flex-item">
       <h3 className="text-center text-2xl mb-5">{title}</h3>
+      <p className="">Author: {author}</p>
       <p className="">Year: {year}</p>
       <p className="">Score: {score}</p>
+      <p className="">Review: {review}</p>
       <div className="flex justify-center my-5">
         <button className="bg-red-700 text-gray-100 w-32 font-semibold
           rounded-xl h-10 hover:bg-red-900 hover:text-gray-200" onClick ={handlerDeleteButton}>Delete</button>
@@ -20,10 +22,11 @@ function BooksItems({title, id,year,score, handlerDeleteButton}){
 function App() {
   const [books, setBooks] = useState([])
   const[dataForm, setDataForm] = useState({
-    // "id":"",
     "title": "",
+    "author":"",
     "year": "",
-    "score":""
+    "score":"",
+    "review":""
 
   })
 
@@ -53,7 +56,14 @@ function App() {
       body: JSON.stringify(dataForm)
       })
 
-      getBooks()
+      getBooks();
+      setDataForm({
+        "title": "",
+        "author":"",
+        "year": "",
+        "score":"",
+        "review":""
+      });
     }
 
     const handlerDeleteButton = async (id) => {
@@ -74,15 +84,19 @@ function App() {
       <div className="center ">
         <section className="form contentForm">
           <h1 className="center titleForm">Review</h1>
-          <form className="flex form flex-col justify-center items-center px-5 my-1"
+          <form id="FormReview" className="flex form flex-col justify-center items-center px-5 my-1"
           onSubmit={handlerFormSubmit}>
             
             <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
             onChange={handlerFormInput} value={dataForm.title} type="text" name="title" required placeholder="Title..."/>
             <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
-            onChange={handlerFormInput} value={dataForm.year} type="text" name="year" required placeholder="Year..."/>
+            onChange={handlerFormInput} value={dataForm.author} type="text" name="author" required placeholder="Author..."/>
             <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
-            onChange={handlerFormInput} value={dataForm.score} type="text" name="score" required placeholder="Score..."/>
+            onChange={handlerFormInput} value={dataForm.year} type="number" name="year" required placeholder="Year..."/>
+            <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
+            onChange={handlerFormInput} value={dataForm.score} type="number" name="score" required placeholder="Score..."/>
+             <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
+            onChange={handlerFormInput} value={dataForm.review} type="text" name="review" required placeholder="Review..."/>
             <input className=" button  rounded-xl font-semibold hover:cursor-pointer mb-3 "
             type="submit" value="Create"/>
 
@@ -96,8 +110,10 @@ function App() {
                 key={book.id}
                 id={book.id}
                 title={book.title}
+                author={book.author}
                 score={book.score}
                 year={book.year}
+                review={book.review}
                 handlerDeleteButton = { ()=> handlerDeleteButton(book.id)}
               />
             ))

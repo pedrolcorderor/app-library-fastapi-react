@@ -56,7 +56,7 @@ def get_books(db: Session = Depends(get_db)):
 
 @app.post("/api/v1/books")
 def create_book(book: Book, db:db_dependency):
-    db_book= models.Books(title=book.title, year=book.year,score=book.score)
+    db_book= models.Books(title=book.title, author=book.author, year=book.year, score=book.score, review=book.review)
     db.add(db_book)
     db.commit()
 
