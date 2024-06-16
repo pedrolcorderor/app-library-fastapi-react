@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import './index.css'
 
 function BooksItems({title, id,year,score, handlerDeleteButton}){
   return(
@@ -67,25 +68,25 @@ function App() {
   },[])
 
   return (
-    <main className="w-full min-h-screen bg-gray-300 text-gray-800 pb-10"> 
-      <h1 className="text-3xl font-bold text-center py-10">This is my app</h1>
+    <main  className="w-full min-h-screen ColorBackground text-gray-800 pb-10"> 
+      <h1 className="text-3xl font-bold text-center title py-10">This is my app</h1>
 
-      
-      <form className="flex flex-col justify-center items-center px-5 my-5"
-       onSubmit={handlerFormSubmit}>
-      {/*   <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3"
-        onChange={handlerFormInput} value={dataForm.id} type="text" name="id" required placeholder="ID..." /> */}
-        <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
-        onChange={handlerFormInput} value={dataForm.title} type="text" name="title" required placeholder="Title..."/>
-        <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
-        onChange={handlerFormInput} value={dataForm.year} type="text" name="year" required placeholder="Year..."/>
-        <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
-        onChange={handlerFormInput} value={dataForm.score} type="text" name="score" required placeholder="Score..."/>
-        <input className="h-10 w-32 bg-green-800 text-gray-100 rounded-xl font-semibold hover:cursor-pointer "
-         type="submit" value="Create"/>
+      <div className="center">
+        <form className="flex form flex-col justify-center items-center px-5 my-5"
+        onSubmit={handlerFormSubmit}>
+        {/*   <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3"
+          onChange={handlerFormInput} value={dataForm.id} type="text" name="id" required placeholder="ID..." /> */}
+          <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
+          onChange={handlerFormInput} value={dataForm.title} type="text" name="title" required placeholder="Title..."/>
+          <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
+          onChange={handlerFormInput} value={dataForm.year} type="text" name="year" required placeholder="Year..."/>
+          <input className="w-96 h-8 pl-3 text-gray-700 rounded-xl my-3" 
+          onChange={handlerFormInput} value={dataForm.score} type="text" name="score" required placeholder="Score..."/>
+          <input className="h-10 w-32 button text-gray-100 rounded-xl font-semibold hover:cursor-pointer mb-3 "
+          type="submit" value="Create"/>
 
-      </form>
-
+        </form>
+      </div>  
       <div>
         {
           books.length === 0 ? "Loader ...": books.map(book =>(

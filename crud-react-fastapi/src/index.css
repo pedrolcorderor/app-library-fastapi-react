@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ColorBackground {
+    background-color: #131515;
+}
+.title{
+    color: hsl(0, 2%, 30%);
+
+}
+.form{
+    background-color: hsl(0, 2%, 40%);
+    border-radius: 7px;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+.button{
+    background-color: #131515;
+    color: hsl(0, 2%, 70%)
+}
