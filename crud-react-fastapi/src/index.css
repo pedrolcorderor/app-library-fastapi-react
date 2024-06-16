@@ -18,7 +18,24 @@
     display: flex;
     justify-content: center;
 }
+
 .button{
     background-color: #131515;
-    color: hsl(0, 2%, 70%)
+    color: hsl(0, 2%, 70%);
+    width: 73px;
+    height: 30px;
 }
+
+.titleForm{
+    font-size: 30px;
+    color: black;
+}
+
+.containerReview{
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex-item {
+    min-width: 27%; 
+    margin-bottom: 20px;
+  }
